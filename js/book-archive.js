@@ -67,16 +67,16 @@ const displaySearchResult = books => {
                 <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="w-50 h-50 mx-auto" alt="...">
                 <div class="card-body">
                     <h5 id="titleBook" class="card-title">Title: ${book.title}</h5>
-                    <p class="card-text">Author Name: ${book.author_name[0]}</p>
+                    <p class="card-text">Author Name: ${book.author_name}</p>
                     <p class="card-text">ISBN No: ${book.isbn[0]}</p>
                     <p class="card-text">Language: ${book.language}</p>
-                    <p class="card-text">Publisher: ${book.publisher[0]}</p>
+                    <p class="card-text">Publisher: ${book.publisher}</p>
                     <p class="card-text">First Published: ${book.first_publish_year}</p>
                 </div>
 
             </div>
             `;
-            //Append info to the div
+            //Append info to the
             searchResult.appendChild(div);
         });
 
