@@ -21,10 +21,10 @@ const searchBook = () => {
         // Clear Team Details
         document.getElementById('team-details').textContent = '';
         // Clear Search Result
-        document.getElementById('search-result').textContent ='';
+        document.getElementById('search-result').textContent = '';
         // load data
-        const url = `http://openlibrary.org/search.json?q=${searchText}`;
-      
+        const url = `https://openlibrary.org/search.json?q=${searchText}`;
+
         console.log(url);
         fetch(url)
             .then(res => res.json())
@@ -66,13 +66,13 @@ const displaySearchResult = books => {
             
                 <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="w-50 h-50 mx-auto" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Title: ${book.title}</h5>
-                    <p class="card-text">Author Name:${book.author_name[0]}</p>
-                    <p class="card-text">Publisher: ${book.publisher[0]}</p>
-                    <p class="card-text">Published: ${book.publish_date[0]}</p>
+                    <h5 id="titleBook" class="card-title">Title: ${book.title}</h5>
+                    <p class="card-text">Author Name:${book.author_name}</p>
+                    <p class="card-text">Publisher: ${book.publisher}</p>
+                    <p class="card-text">Published: ${book.first_publish_year}</p>
                 </div>
                 <div class = "card-footer">
-                    <button class="btn btn-outline-dark" onclick="loadTeamDetail('${book.idTeam}')">Load More <i class="fas fa-arrow-right"></i></button> 
+                    <button class="btn btn-outline-dark" onclick="loadTeamDetail('${book.title}')">Load More <i class="fas fa-arrow-right"></i></button> 
                 </div>
             </div>
             `;
@@ -81,3 +81,35 @@ const displaySearchResult = books => {
     }
 
 }
+
+/* 
+// // Fetch team detail
+const loadTeamDetail = () => {
+    //const authorUrl = `https://openlibrary.org/authors/${author_key}.json`;
+    // fetch(`http://openlibrary.org/search.json?title=${}`)
+    //     .then(res => res.json())
+    //     .then(res => displayTeamDetail(res)); 
+      const bookTitle =  document.getElementById('titleBook');
+      const bookTitleText = bookTitle.innerText;
+      console.log(bookTitleText);
+
+}
+// // Display team detail at the top
+const displayTeamDetail = (teamDetail) => {
+    const book = teamDetail.docs[0];
+    window.scrollTo(0, 40);
+    const teamShow = document.getElementById('team-details');
+    teamShow.textContent = ''
+    const div = document.createElement('div');
+    div.classList.add('card', 'bg-dark', 'text-warning', 'text-center');
+    div.innerHTML = `
+    <img src="${book.strStadiumThumb}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Team: ${book.alternate_names}</h5>
+        <p class="card-text">Home: ${book.strStadium}</p> 
+        <p><small class="card-text">Team Description: ${book.strDescriptionEN ? book.strDescriptionEN.slice(0, 100) : "N/a"}</small></p>
+        <a href="https://${book.strYoutube}" target="_blank" class="btn btn-primary">Watch Videos</a>
+    </div>
+    `;
+    teamShow.appendChild(div);
+} */
